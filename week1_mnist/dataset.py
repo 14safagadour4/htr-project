@@ -4,13 +4,6 @@ from torchvision import datasets, transforms
 
 
 def get_mnist_loaders(batch_size=64, data_dir='../data'):
-    """
-    Returns train and test DataLoaders for MNIST.
-
-    Transforms:
-    - ToTensor: converts PIL image (0-255) to tensor (0.0-1.0)
-    - Normalize: standardizes using MNIST mean/std
-    """
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((0.1307,), (0.3081,))  # MNIST mean & std
