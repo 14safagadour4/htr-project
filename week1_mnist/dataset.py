@@ -1,12 +1,16 @@
 import torch
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
-
+from model import SimpleCNN
+model = SimpleCNN()
+for name, p in model.named_parameters():
+    print(f"{name}: {p.shape} → {p.numel()} params")
+print("Total:", sum(p.numel() for p in model.parameters()))
 
 def get_mnist_loaders(batch_size=64, data_dir='../data'):
     transform = transforms.Compose([
         transforms.ToTensor(),
-        transforms.Normalize((0.1307,), (0.3081,))  # MNIST mean & std
+        transforms.Normalize((0.1307,), (0.3081,))  
     ])
 
     train_dataset = datasets.MNIST(
